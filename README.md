@@ -1,42 +1,47 @@
-# Docker Getting Started Tutorial
+### Getting started with Docker 
 
-This tutorial has been written with the intent of helping folks get up and running
-with containers and is designed to work with Docker Desktop. While not going too much 
-into depth, it covers the following topics:
-
+- Installing Docker in Windows 10
 - Running your first container
 - Building containers
 - Learning what containers are running and removing them
-- Using volumes to persist data
-- Using bind mounts to support development
-- Using container networking to support multi-container applications
-- Using Docker Compose to simplify the definition and sharing of applications
-- Using image layer caching to speed up builds and reduce push/pull size
-- Using multi-stage builds to separate build-time and runtime dependencies
 
-## Getting Started
+Now, if you are usin Linux or Mac docker-installation will be a pretty straight-forward but in Windows 10 home it can be a pretty daunting task.
 
-If you wish to run the tutorial, you can use the following command after installing Docker Desktop:
 
-```bash
-docker run -d -p 80:80 docker/getting-started
+I used this sample todo-app built with Nodejs
+
+
+Create a file named Dockerfile in the same folder as the file package.json with the following contents.
+
 ```
 
-Once it has started, you can open your browser to [http://localhost](http://localhost).
+FROM node:12-alpine
+RUN apk add --no-cache python g++ make
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "src/index.js"]
+ 
+ ```
+ 
+ If you haven’t already done so, open a terminal and go to the app directory with the Dockerfile. Now build the container image using the docker build command.
 
-## Development
-
-This project has a `docker-compose.yml` file, which will start the mkdocs application on your
-local machine and help you see changes instantly.
-
-```bash
-docker-compose up
+```
+ docker build -t getting-started 
 ```
 
-## Contributing
+Start an app container🔗
+Now that we have an image, let’s run the application! To do so, we will use the docker run command (remember that from earlier?).
 
-If you find typos or other issues with the tutorial, feel free to create a PR and suggest fixes!
+Start your container using the docker run command and specify the name of the image we just created:
 
-If you have ideas on how to make the tutorial better or new content, please open an issue first before working on your idea. While we love input, we want to keep the tutorial  scoped to newcomers.
-As such, we may reject ideas for more advanced requests and don't want you to lose any work you might
-have done. So, ask first and we'll gladly hear your thoughts!
+```
+ docker run -dp 3000:3000 getting-started
+```
+
+
+
+
+
+
+
