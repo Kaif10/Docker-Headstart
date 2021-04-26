@@ -39,17 +39,44 @@ Start your container using the docker run command and specify the name of the im
  docker run -dp 3000:3000 getting-started
 ```
 
-Making changes🔗
+
+Making changes (Updating application)🔗
 
 Lets say you made same new changes in the codebase and now you want to build an updated version of the image.
-Follow the same steps as before i.e. 1. Build image and then start container at port 3000 but you'll probably get 
+Follow the same steps as before i.e. 
+1. Build image and then start container at port 3000 but you'll probably get 
 an error
 
 docker: Error response from daemon: driver failed programming external connectivity on endpoint laughing_burnell 
 (bb242b2ca4d67eba76e79474fb36bb5125708ebdabd7f45c8eaf16caaabde9dd): Bind for 0.0.0.0:3000 failed: port is already allocated.)
 
-So, what happened? We aren’t able to start the new container because our old container is still running. The reason this is a problem is because that container is using the host’s port 3000 and only one process on the machine (containers included) can listen to a specific port. To fix this, we need to remove the old container.
+So, what happened? We aren’t able to start the new container because our old container is still running. The reason this is a problem is because that container is using the host’s port 3000 and only one process on the machine (containers included) can listen to a specific port. 
 
+To fix this, we need to remove the old container.
+
+Get the id of the container that is running with the following command :
+
+```
+ docker ps 
+ #you will get the output as a container id.
+```
+
+Use the docker stop command to stop the container:
+ 
+ Swap out <the-container-id> with the ID from docker ps
+ 
+ ```
+ docker stop <the-container-id>
+ ```
+ 
+ 
+Once the container has stopped, you can remove it by using the docker rm command.
+
+```
+docker rm <the-container-id>
+```
+ 
+Now that the old container is removed, you can start the new container.
 
 
 
