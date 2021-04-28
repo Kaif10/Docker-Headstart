@@ -1,3 +1,5 @@
+[](https://pbs.twimg.com/profile_images/1273307847103635465/lfVWBmiW_400x400.png)
+
 ### Getting started with Docker 
 
 - Installing Docker in Windows 10
