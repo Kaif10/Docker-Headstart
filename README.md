@@ -10,7 +10,8 @@
 Now, if you are usin Linux or Mac docker-installation will be a pretty straight-forward but in Windows 10 home it can be a pretty daunting task.
 
 
-I used this sample todo-app built with Nodejs
+I used a sample todo-app built with Nodejs for hosting with Docker.You can clone the sample app from [here](https://github.com/docker/getting-started) or if you have built a  nodejs app earlier you can also use that.
+
 
 
 Create a file named Dockerfile in the same folder as the file package.json with the following contents.
